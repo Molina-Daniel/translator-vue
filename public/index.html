@@ -11,8 +11,25 @@
 
 <body>
 
+  <div id="app" class="container">
+    <h1>Words Trainer APP</h1>
 
-  <div class="container">
+    <div>
+      <form @submit.prevent="translateMe" action="get">
+        <input v-model:value="textToTranslate" type="text" name="input" id="input"
+          placeholder="Type a word to translate...">
+        <button type="submit" name="input" id="translate">Translate!</button>
+      </form>
+    </div>
+
+    <div>
+      <div id="word"></div>
+      <div id="translation"> {{ translation }}</div>
+    </div>
+  </div>
+
+
+  <!-- <div class="container"> 
     <h1>Words Trainer APP</h1>
     <div>
       <input type="text" name="input" id="input" placeholder="Type a word to translate...">
@@ -22,9 +39,10 @@
       <div id="word"></div>
       <div id="translation"></div>
     </div>
-  </div>
+  </div> -->
 
 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="main.js"></script>
 </body>

@@ -29,7 +29,8 @@ const io = SocketIO.listen(server);
 // Listen new client connections
 io.on('connection', (socket) => {
   console.log('new connection', socket.id);
-  socket.on('translateMe', (data) => {
+  socket.on('textToTranslate', (data) => {
+    console.log(data);
     var { translate } = require("google-translate-api-browser");
     translate(data, { to: "es" })
       .then(res => {
@@ -39,11 +40,10 @@ io.on('connection', (socket) => {
       .catch(err => {
         console.error(err);
       });
-
   })
 });
 
-
+/*
 // GOOGLE-TRANSLATE-API-BROWSER
 let { translate } = require("google-translate-api-browser");
 let readline = require("readline");
@@ -67,4 +67,4 @@ rl.on("line", function (line) {
 }).on("close", function () {
   process.exit(0);
 });
-
+*/

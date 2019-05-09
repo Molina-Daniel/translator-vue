@@ -1,3 +1,4 @@
+/*
 // Connect main.js with server.js on server side
 const socket = io();
 
@@ -28,4 +29,33 @@ socket.on('translated', function (data) {
   </p>
   `
 });
+*/
+var socket = null;
 
+var app = new Vue({
+  el: '#app',
+  data: {
+    textToTranslate: '',
+    translation: ''
+  },
+  computed: {
+    // getTranslation() {
+    //   socket.on('translated', (data) => data);
+    // }
+  },
+  methods: {
+    translateMe() {
+      socket.emit('textToTranslate', this.textToTranslate);
+      this.textToTranslate = '';
+    },
+    // getTranslation() {
+    //   socket.on('translated', (data) => this.translation = data);
+    // }
+  },
+  created() {
+    socket = io();
+  },
+  mounted() {
+    socket.on('translated', (data) => this.translation = data);
+  }
+})
